@@ -1,0 +1,32 @@
+/**
+ * This is a copy of DAVI/src/bytecodes/local.
+ * Find a better way to store this
+ */
+
+export const DeployedHashedBytecodes = [
+  {
+    type: 'ERC20Guild',
+    bytecode_hash:
+      '0xa6a7463a986b6043eec40fa1589592ed2357027522e816e4a2742a7de9c916e4',
+    features: [],
+  },
+  {
+    type: 'SnapshotRepERC20Guild',
+    bytecode_hash:
+      '0x5220f03f768c7f09437ccf760eb5307dc60f60e18c9c9ff9599a9ab3ad71d2a0',
+    features: ['REP', 'SNAPSHOT'],
+  },
+  {
+    type: 'SnapshotERC20Guild',
+    bytecode_hash:
+      '0xfc721cf4ee3e10d6df0dc8659bc71c86ec7b2116001838e1d9bc30ccfbe8cfac',
+    features: ['SNAPSHOT'],
+  },
+  {
+    type: 'DXDGuild',
+    bytecode_hash:
+      '0xd5902fb6fc81853ceacf1bbca411b1c78a4809ae854a858f34197b056c438ca2',
+    features: [],
+  },
+];
+

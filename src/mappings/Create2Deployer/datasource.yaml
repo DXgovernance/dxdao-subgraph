@@ -1,0 +1,12 @@
+abis:
+  - Create2Deployer
+entities:
+  - Guild
+  - DeployedContract
+eventHandlers:
+  - event: Deployed(address,uint256)
+    handler: handleDeployedEvent
+callHandlers:
+  - function: deploy(bytes,uint256)
+    handler: handleDeployFunction
+
