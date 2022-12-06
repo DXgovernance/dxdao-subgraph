@@ -1,5 +1,4 @@
 abis:
-  - BaseERC20Guild
   - ERC20
 entities:
   - Guild
@@ -8,3 +7,4 @@ eventHandlers:
     handler: handleAddGuild
   - event: RemoveGuild(address)
     handler: handleRemoveGuild
+

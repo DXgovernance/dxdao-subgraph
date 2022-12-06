@@ -3,7 +3,7 @@
  * Find a better way to store this
  */
 
-export const DeployedHashedBytecodes = [
+export const deployedHashedBytecodes = [
   {
     type: 'ERC20Guild',
     bytecode_hash:

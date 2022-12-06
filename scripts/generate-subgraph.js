@@ -66,12 +66,14 @@ function combineFragments(addresses, contractName, isTemplate) {
   const fragmentFile = yaml.load(fs.readFileSync(filePath, 'utf-8'));
 
   const mappingFile = path.join(contractPath, `mapping.ts`);
-  const eventHandlers = fragmentFile.eventHandlers;
-  const entities = fragmentFile.entities;
+  const eventHandlers = fragmentFile?.eventHandlers;
+  const entities = fragmentFile?.entities;
 
   const usedContracts = [
     ...new Set(
-      fragmentFile.abis ? [contractName, ...fragmentFile.abis] : [contractName]
+      fragmentFile?.abis
+        ? [contractName, ...fragmentFile?.abis]
+        : [contractName]
     ),
   ];
   const abis = usedContracts.map(contractName => {
@@ -115,11 +117,16 @@ function combineFragments(addresses, contractName, isTemplate) {
       apiVersion: '0.0.6',
       language: 'wasm/assemblyscript',
       entities: entities ? entities : ['nothing'],
-      abis,
-      eventHandlers,
       file: path.relative('.', path.resolve(mappingFile)),
     },
   };
+
+  if (!!eventHandlers) {
+    result.mapping.eventHandlers = eventHandlers;
+  }
+  if (!!abis) {
+    result.mapping.abis = abis;
+  }
 
   return result;
 }
