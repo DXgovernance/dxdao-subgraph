@@ -8,6 +8,6 @@ entities:
   - Guild
   - Token
 eventHandlers:
-  - event: Deployed(address,bytes)
+  - event: Deployed(address,bytes32)
     handler: handleDeployedEvent
 

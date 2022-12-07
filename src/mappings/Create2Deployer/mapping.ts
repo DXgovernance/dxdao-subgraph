@@ -97,3 +97,7 @@ export function handleDeployedEvent(event: Deployed): void {
   }
 }
 
+// - cuál es la diff entre templates y datasources?
+// - Por qué necesito hacer un BaseERC20GuildTemplate.create(address) si ya tenemos Guild.load() y demás?
+// - Por qué no me aparecen las interfaces(templates) si no agrego una carpeta en mappings con el nombre y los 3 archivos vacíos?
+
