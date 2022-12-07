@@ -31,16 +31,13 @@ function getImplementationInterface(type) {
   }
 }
 
-// Event get the deploy event. We get from params the address and salt but we don't get the actual bytecode deployed. Find a way to retreive that.
+// Handler to initialize guilds once they are deployed.
 export function handleDeployedEvent(event: Deployed): void {
   const contractAddress = event.params.addr;
   const type = getImplementationType(event.params.hashedBytecode);
 
-  if (!type) {
-    // TODO: do something here?
-    // esto no es una guild o no machea con ningún bytecode
-  } else {
-    // Esto es una guild
+  if (!!type) {
+    // If no type found, contract deployed was not a guil and will not be trated here.
     const guildAddress = contractAddress;
 
     let contract = BaseERC20Guild.bind(guildAddress);
@@ -59,8 +56,6 @@ export function handleDeployedEvent(event: Deployed): void {
     token.save();
 
     // Create Guild instance.
-    // It could already exist as well if it was removed from the registry in the past,
-    // so load it instead if it does
     let guild = Guild.load(guildAddress.toHexString());
     if (guild == null) {
       guild = new Guild(guildAddress.toHex());
@@ -96,8 +91,8 @@ export function handleDeployedEvent(event: Deployed): void {
     template.create(guildAddress);
   }
 }
-
-// - cuál es la diff entre templates y datasources?
-// - Por qué necesito hacer un BaseERC20GuildTemplate.create(address) si ya tenemos Guild.load() y demás?
-// - Por qué no me aparecen las interfaces(templates) si no agrego una carpeta en mappings con el nombre y los 3 archivos vacíos?
+// Questions:
+// - What is the diff templates y datasources?
+// - Why do we need to do BaseERC20GuildTemplate.create(address) if we already did Guild.load()?
+// - Do we need to create a new folder with empty files just to use interface/template from the abi. Why is that?
 
