@@ -1,4 +1,4 @@
-import { Address, BigInt, log } from '@graphprotocol/graph-ts';
+import { Address, BigInt, log, store } from '@graphprotocol/graph-ts';
 import { Guild, Member, Token } from '../../types/schema';
 import {
   ERC20SnapshotRep,
@@ -55,7 +55,7 @@ export function handleTransfer(event: Transfer): void {
     guild.members = guildMembersClone;
 
     guild.save();
-    member.unset(memberId);
+    store.remove('Member', memberId);
   }
 }
 
