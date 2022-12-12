@@ -1,71 +1,15 @@
 import { AddGuild, RemoveGuild } from '../../types/GuildRegistry/GuildRegistry';
-import {
-  BaseERC20Guild as BaseERC20GuildTemplate,
-  ERC20SnapshotRep,
-} from '../../types/templates';
-import { Guild, Token } from '../../types/schema';
-import { BaseERC20Guild } from '../../types/templates/BaseERC20Guild/BaseERC20Guild';
-import { ERC20 } from '../../types/GuildRegistry/ERC20';
+import { Guild } from '../../types/schema';
 
 export function handleAddGuild(event: AddGuild): void {
-  // Instantiate BaseERC20Guild contract instance
   let address = event.params.guildAddress;
-  let contract = BaseERC20Guild.bind(address);
 
-  // Get token config
-  let tokenAddress = contract.getToken();
-  let tokenContract = ERC20.bind(tokenAddress);
-  let token = Token.load(tokenAddress.toHexString());
-  if (!token) {
-    token = new Token(tokenAddress.toHexString());
-  }
-  token.name = tokenContract.name();
-  token.type = 'ERC20';
-  token.symbol = tokenContract.symbol();
-  token.decimals = tokenContract.decimals();
-  token.guildAddress = address.toHexString();
-
-  token.save();
-
-  // Create Guild instance.
-  // It could already exist as well if it was removed from the registry in the past,
-  // so load it instead if it does
   let guild = Guild.load(address.toHexString());
   if (guild == null) {
     guild = new Guild(address.toHex());
   }
 
-  // Save Guild config
-  guild.name = contract.getName();
-  guild.permissionRegistry = contract.getPermissionRegistry().toHexString();
-  guild.proposalTime = contract.getProposalTime();
-  guild.lockTime = contract.getLockTime();
-  guild.timeForExecution = contract.getTimeForExecution();
-  guild.votingPowerForProposalCreation =
-    contract.getVotingPowerForProposalCreation();
-  guild.votingPowerForProposalExecution =
-    contract.getVotingPowerForProposalExecution();
-  guild.voteGas = contract.getVoteGas();
-  guild.maxGasPrice = contract.getMaxGasPrice();
-  guild.maxActiveProposals = contract.getMaxActiveProposals();
-  guild.minimumMembersForProposalCreation =
-    contract.getMinimumMembersForProposalCreation();
-  guild.minimumTokensLockedForProposalCreation =
-    contract.getMinimumTokensLockedForProposalCreation();
-  guild.token = token.id;
-  guild.isDeleted = false;
-  guild.proposals = [];
-  guild.members = [];
-
-  if (guild.name == 'REPGuild') {
-    guild.type = 'SnapshotRepERC20Guild';
-    ERC20SnapshotRep.create(tokenAddress);
-    // TODO: add more conditionals to support
-  } else {
-    guild.type = 'ERC20Guild';
-  }
-
-  BaseERC20GuildTemplate.create(address);
+  guild.isActive = true;
 
   guild.save();
 }
@@ -77,7 +21,7 @@ export function handleRemoveGuild(event: RemoveGuild): void {
   // This should never happen!
   if (guild == null) return;
 
-  guild.isDeleted = true;
+  guild.isActive = false;
   guild.save();
 }
 

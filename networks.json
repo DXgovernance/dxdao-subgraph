@@ -7,6 +7,11 @@
     "PermissionRegistry": {
       "address": "0x881C745d0E181656b8D8415D805f1e8104336127",
       "startBlock": 1
+    },
+    "Create2Deployer": {
+      "address": "0x60eb77a1d81cd80db4cdd589a7bbcd1f29a38ae8",
+      "startBlock": 1
     }
   }
 }
+
