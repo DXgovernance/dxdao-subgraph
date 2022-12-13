@@ -13,7 +13,7 @@ type Guild @entity {
   maxActiveProposals: BigInt!
   minimumMembersForProposalCreation: BigInt!
   minimumTokensLockedForProposalCreation: BigInt!
-  type: GuildType!
+  type: GuildType
   permissions: [GuildPermission!]! @derivedFrom(field: "guild")
   proposals: [Proposal!]
   members: [Member!]

@@ -11,7 +11,7 @@
     "build": "graph build",
     "dev": "yarn create-local && yarn deploy-local",
     "create-local": "graph create mprasanjith/dxdao --node http://127.0.0.1:8020",
-    "deploy-local": "graph deploy mprasanjith/dxdao --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020",
+    "deploy-local": "graph deploy mprasanjith/dxdao --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020 -l v0.0.1",
     "deploy": "graph deploy mprasanjith/dxdao --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/"
   },
   "devDependencies": {
@@ -29,4 +29,3 @@
     "js-yaml": "^4.1.0"
   }
 }
-
