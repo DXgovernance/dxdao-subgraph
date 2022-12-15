@@ -11,7 +11,7 @@
     "build": "graph build",
     "dev": "yarn create-local && yarn deploy-local",
     "create-local": "graph create mprasanjith/dxdao --node http://127.0.0.1:8020",
-    "deploy-local": "graph deploy mprasanjith/dxdao --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020",
+    "deploy-local": "graph deploy mprasanjith/dxdao --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020 -l v0.0.1",
     "deploy": "graph deploy mprasanjith/dxdao --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/"
   },
   "devDependencies": {
@@ -21,6 +21,7 @@
     "@typescript-eslint/parser": "^5.38.0",
     "eslint": "^8.23.1",
     "eslint-config-prettier": "^8.5.0",
+    "glob": "^8.0.3",
     "prettier": "^2.7.1"
   },
   "dependencies": {
@@ -29,4 +30,3 @@
     "js-yaml": "^4.1.0"
   }
 }
-
