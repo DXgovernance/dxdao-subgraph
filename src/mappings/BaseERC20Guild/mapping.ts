@@ -1,4 +1,10 @@
-import { ipfs, json, JSONValueKind, BigInt } from '@graphprotocol/graph-ts';
+import {
+  ipfs,
+  json,
+  JSONValueKind,
+  BigInt,
+  store,
+} from '@graphprotocol/graph-ts';
 import {
   Guild,
   Proposal,
@@ -285,9 +291,10 @@ export function handleTokenWithdrawal(event: TokensWithdrawn): void {
     guild.members = guildMembersClone;
 
     guild.save();
+    store.remove('Member', memberId);
+  } else {
+    member!.save();
   }
-
-  member!.unset(memberId);
 }
 
 function isIPFS(contentHash: string): boolean {
