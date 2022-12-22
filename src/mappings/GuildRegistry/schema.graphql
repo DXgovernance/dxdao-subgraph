@@ -1,23 +1,24 @@
 type Guild @entity {
   id: ID!
-  name: String!
+  name: String
   token: Token
-  permissionRegistry: String!
-  proposalTime: BigInt!
-  lockTime: BigInt!
-  timeForExecution: BigInt!
-  votingPowerForProposalCreation: BigInt!
-  votingPowerForProposalExecution: BigInt!
-  voteGas: BigInt!
-  maxGasPrice: BigInt!
-  maxActiveProposals: BigInt!
-  minimumMembersForProposalCreation: BigInt!
-  minimumTokensLockedForProposalCreation: BigInt!
+  permissionRegistry: String
+  proposalTime: BigInt
+  lockTime: BigInt
+  timeForExecution: BigInt
+  votingPowerForProposalCreation: BigInt
+  votingPowerForProposalExecution: BigInt
+  voteGas: BigInt
+  maxGasPrice: BigInt
+  maxActiveProposals: BigInt
+  minimumMembersForProposalCreation: BigInt
+  minimumTokensLockedForProposalCreation: BigInt
   type: GuildType
   permissions: [GuildPermission!]! @derivedFrom(field: "guild")
   proposals: [Proposal!]
   members: [Member!]
   isActive: Boolean
+  bytecodeHash: String
 }
 
 enum TokenType {
