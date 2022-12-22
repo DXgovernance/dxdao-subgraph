@@ -1,15 +1,15 @@
 {
   "private": {
     "GuildRegistry": {
-      "address": "0xa19E7f8f6f064D1150c314897A32119d0299BA6b",
+      "address": "0xf0EE9557982b4300a69f355a896Fd3af69e46D32",
       "startBlock": 1
     },
     "PermissionRegistry": {
-      "address": "0x881C745d0E181656b8D8415D805f1e8104336127",
+      "address": "0x0E59f2bAe31C0AAeb1cd0a16E883b00A9CD115eE",
       "startBlock": 1
     },
     "Create2Deployer": {
-      "address": "0x60eb77a1d81cd80db4cdd589a7bbcd1f29a38ae8",
+      "address": "0xEa8FFf1398336867D0b259E319b49E0D6622311F",
       "startBlock": 1
     }
   }

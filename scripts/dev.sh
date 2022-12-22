@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+node ./scripts/updateBytecodes.js
 echo "Subgraph::: Waiting 30 seconds to dev-script to run"
 sleep 30
 echo "Subgraph::: Starting docker"
