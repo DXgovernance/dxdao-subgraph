@@ -1,0 +1,17 @@
+type TokenVesting @entity {
+  id: ID!
+  owner: String!
+  beneficiary: String!
+  start: uint256
+  cliffDuration: uint256
+  duration: uint256
+  value: uint256
+  // token 
+}
+
+type VestingFactory @entity {
+  id: ID! 
+  token: String!
+  owner: String! 
+}
+
