@@ -1,0 +1,6 @@
+type VestingFactory @entity {
+  id: ID!
+  token: String!
+  owner: String!
+}
+
