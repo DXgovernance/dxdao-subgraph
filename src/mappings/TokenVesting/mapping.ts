@@ -1,35 +1,29 @@
-import { TokenVesting } from '../../../../../../dxdao-subgraph/src/types/schema';
+import { TokenVesting } from '../../types/schema';
 import {
   TokensReleased,
-  TokenVesting as TokenVestingContract,
   TokenVestingRevoked,
-} from '../../../../../../dxdao-subgraph/src/types/templates/TokenVesting/TokenVesting';
+} from '../../types/templates/TokenVesting/TokenVesting';
 
 export function handleTokensReleased(event: TokensReleased): void {
   let tokenVesting = TokenVesting.load(event.address.toHexString());
 
-  // TODO: it's impossible it doesnt exist right?
-  // if (!tokenVesting) {
-  // }
+  if (!tokenVesting) return;
 
-  tokenVesting!.released = event.params.amount;
+  tokenVesting.released = event.params.amount;
 
-  tokenVesting!.save();
+  tokenVesting.save();
 }
 
 export function handleTokenVestingRevoked(event: TokenVestingRevoked): void {
-  // get contract
-  // get value
-
   let tokenVesting = TokenVesting.load(event.address.toHexString());
 
-  // can't be null right?
+  if (!tokenVesting) return;
 
   // why does the contract have this line? there can be more than one token inside the same vesting contract?
   // _revoked[address(token)] = true;
 
-  tokenVesting!.revoked = true;
+  tokenVesting.revoked = true;
 
-  tokenVesting!.save();
+  tokenVesting.save();
 }
 

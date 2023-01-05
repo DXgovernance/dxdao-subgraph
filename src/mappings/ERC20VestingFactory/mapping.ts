@@ -1,9 +1,9 @@
+import { TokenVesting, VestingFactory } from '../../types/schema';
 import {
   ERC20VestingFactory,
   VestingCreated,
-} from '../../../../../../dxdao-subgraph/src/types/templates/ERC20VestingFactory/ERC20VestingFactory';
-import { TokenVesting as TokenVestingContract } from '../../../../../../dxdao-subgraph/src/types/templates/TokenVesting/TokenVesting';
-import { TokenVesting, VestingFactory } from '../../../../../../dxdao-subgraph/src/types/schema';
+} from '../../types/templates/ERC20VestingFactory/ERC20VestingFactory';
+import { TokenVesting as TokenVestingContract } from '../../types/templates/TokenVesting/TokenVesting';
 
 export function handleVestingCreated(event: VestingCreated): void {
   const tokenVestingAddress = event.params.vestingContractAddress;
@@ -17,12 +17,7 @@ export function handleVestingCreated(event: VestingCreated): void {
 
   let tokenVestingContract = TokenVestingContract.bind(tokenVestingAddress);
 
-  // what should be the PK here?
   let tokenVesting = new TokenVesting(tokenVestingAddress.toHex());
-
-  // should get the erc20Token and vestingOwner from the vestingFactory
-  // IERC20 public erc20Token;
-  // address public vestingOwner;
 
   tokenVesting.beneficiary = tokenVestingContract.beneficiary().toString();
   tokenVesting.cliff = tokenVestingContract.cliff();
