@@ -1,0 +1,10 @@
+abis:
+  - ERC20VestingFactory
+entities:
+  - VestingFactory
+eventHandlers:
+  - event: VestingCreated(address)
+    handler: handleVestingCreated
+callHandlers:
+  -
+

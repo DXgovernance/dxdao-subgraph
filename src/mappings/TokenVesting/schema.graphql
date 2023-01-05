@@ -1,0 +1,13 @@
+type TokenVesting @entity {
+  id: ID!
+  owner: String!
+  token: String!
+  beneficiary: String!
+  cliff: BigInt!
+  start: BigInt!
+  duration: BigInt!
+  revocable: Boolean!
+  released: BigInt!
+  revoked: Boolean!
+}
+

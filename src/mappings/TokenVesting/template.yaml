@@ -1,0 +1,12 @@
+abis:
+  - TokenVesting
+entities:
+  - TokenVesting
+eventHandlers:
+  - event: TokensReleased(address,uint256)
+    handler: handleTokensReleased
+  - event: TokenVestingRevoked(address)
+    handler: handleTokenVestingRevoked
+callHandlers:
+  -
+
